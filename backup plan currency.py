@@ -26,14 +26,27 @@ class App(tk.Tk):
         self.title = ('Currency Converter')
         self.currency_converter = converter
 
-        self.geometry("500x400")
+        self.geometry("500x365")
+        self.resizable(width=False, height=False)  # Add this line
+
         self.configure(bg="whitesmoke")
+        self.background_image = tk.PhotoImage(file='bunny.gif')
+        self.background_label = tk.Label(self, image=self.background_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        # Rest of the code...
+
 
     
-        self.intro_label = Label(self, text = 'Currency converter',  fg = '#070700' , relief = "ridge", justify = tk.CENTER, borderwidth = 5 )
-        self.intro_label.config(font = ('arial',20,'bold'))
+        self.intro_label = Label(self, text='Currency converter', relief='raised', fg='#070700', justify=tk.CENTER, borderwidth=5)
+        self.intro_label.config(font=('arial',20,'bold'))
 
-        self.intro_label.place(x = 160, y = 5)
+        self.intro_label.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
+        
+        # Bind events for the 3D relief effect and the hover transparency effect
+        self.intro_label.bind('<Enter>', lambda e: self.intro_label.config(bg='white', relief='sunken'))
+        self.intro_label.bind('<Leave>', lambda e: self.intro_label.config(bg=self.cget('bg'), relief='raised'))
+
         
 
         
